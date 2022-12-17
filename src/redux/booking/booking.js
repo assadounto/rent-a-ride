@@ -1,52 +1,46 @@
-import {createSlice,createAsyncThunk} from '@reduxjs/toolkit';
+import { createSlice, createAsyncThunk } from '@reduxjs/toolkit';
 import { bookingService } from '../../services/services';
 
 const initialState = {
-    bookings: [],
-    loading: false,
-    error: null,
+  bookings: [],
+  loading: false,
+  error: null,
 };
 
 export const fetchBookings = createAsyncThunk(
-    'bookings/fetchBookings',
-    async () => {
-        const response = await bookingService.getBookings();
-        return response.data;
-        
-    }
+  'bookings/fetchBookings',
+  async () => {
+    const response = await bookingService.getBookings();
+    return response.data;
+  },
 );
 
-
 export const createBooking = createAsyncThunk(
-    'bookings/createBooking',
-    async (data) => {
-        const response = await bookingService.createBooking(data);
-        return response.data;
-    }
+  'bookings/createBooking',
+  async (data) => {
+    const response = await bookingService.createBooking(data);
+    return response.data;
+  },
 );
 
 export const removeBooking = createAsyncThunk(
-    'bookings/removeBooking',
-    async (id) => {
-        const response = await bookingService.removeBooking(id);
-        return response.data;
-    }
+  'bookings/removeBooking',
+  async (id) => {
+    const response = await bookingService.removeBooking(id);
+    return response.data;
+  },
 );
 
-
 export const bookingsSlice = createSlice({
-    name: 'bookings',
-    initialState,
-    reducers: {},
-    extraReducers: {
-        [fetchBookings.fulfilled]: (state,action) => {
-            state.loading = true;
-            state.bookings=action.payload;
-        }
-    }
+  name: 'bookings',
+  initialState,
+  reducers: {},
+  extraReducers: {
+    [fetchBookings.fulfilled]: (state, action) => {
+      state.loading = true;
+      state.bookings = action.payload;
+    },
+  },
 });
-
-
-
 
 export default bookingsSlice.reducer;
