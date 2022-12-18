@@ -435,13 +435,3 @@ h1 {
   }
 
 }
-
-@media (min-width: $breakpoint-desktop) {
-  .stores {
-    grid-template-columns: 1fr 1fr 1fr 1fr;
-  }
-
-  .whiteCortain {
-    width: 40%;
-  }
-}

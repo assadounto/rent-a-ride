@@ -40,18 +40,19 @@ function Home() {
     ],
   };
   return (
-
-    <div className="container">
-      <div className="home-container">
-        <header className="cars-header">
-          <h1>LATEST MODELS</h1>
-          <p>Please select a car</p>
-          <hr className="division-span" />
-        </header>
-        <div className="cars-container">
-          <ul className="car-slider">
-            <Slider {...settings}>
-              {
+    vehicles.loading ? <h1>loading</h1>
+      : (
+        <div className="container">
+          <div className="home-container">
+            <header className="cars-header">
+              <h1>LATEST MODELS</h1>
+              <p>Please select a car</p>
+              <hr className="division-span" />
+            </header>
+            <div className="cars-container">
+              <ul className="car-slider">
+                <Slider {...settings}>
+                  {
                 vehicles.cars.map((car, index) => (
                   <CarCard
                     key={car.id}
@@ -63,11 +64,12 @@ function Home() {
                   />
                 ))
               }
-            </Slider>
-          </ul>
+                </Slider>
+              </ul>
+            </div>
+          </div>
         </div>
-      </div>
-    </div>
+      )
   );
 }
 

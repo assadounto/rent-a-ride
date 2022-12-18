@@ -27,7 +27,6 @@ const Booking = (props) => {
     state,
     vehicle,
   } = props;
-
   const userState = useSelector((state) => state.user);
   const cars = useSelector((state) => state.vehicles.cars);
   const dispatch = useDispatch();
@@ -42,6 +41,7 @@ const Booking = (props) => {
 
   const [days, setDays] = useState('---');
   const [cost, setCost] = useState('---');
+  const [message, setMess] = useState(false);
 
   const calcDays = () => {
     const dateStartVal = dateStart.current.value;
@@ -70,7 +70,6 @@ const Booking = (props) => {
   };
 
   const sendForm = () => {
-    /* PUT SOME VALIDATION HERE */
     const dateStartVal = dateStart.current.value;
     const dateEndVal = dateEnd.current.value;
     const cityVal = city.current.value;
@@ -83,7 +82,11 @@ const Booking = (props) => {
       city: cityVal,
     };
 
-    dispatch(createBooking(booking));
+    dispatch(createBooking(booking)).then((res) => {
+      if (res) {
+        setMess(true);
+      }
+    });
   };
   return (
     <div className={state ? 'booking book-show' : 'booking book-hide'}>
@@ -95,6 +98,7 @@ const Booking = (props) => {
       </div>
       <h2>BOOKING</h2>
       <div className="centerForm">
+        <p>{message && 'Booking Created'}</p>
         <form ref={form} action="#" method="post">
           <input type="hidden" name="user" value={user} />
           {!id && (
@@ -152,18 +156,21 @@ const Booking = (props) => {
               required
             />
           </div>
-
+          {id
+          && (
           <div className="resume">
             <div>
               <span>Days</span>
               <h2>{days}</h2>
             </div>
+
             <div>
               <span>Cost</span>
               <h2>{cost}</h2>
             </div>
-          </div>
 
+          </div>
+          )}
           <div className="form-bottom-bar">
             <Button
               btnAxn={sendForm}
