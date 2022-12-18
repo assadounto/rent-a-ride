@@ -1,16 +1,15 @@
+/* eslint-disable no-unused-vars */
 /* eslint linebreak-style: ["error", "windows"] */
-import React, { useRef, useState , useEffect} from 'react';
-import { useDispatch,useSelector } from 'react-redux';
-import { Link , useNavigate} from 'react-router-dom';
+import React, { useRef, useState, useEffect } from 'react';
+import { useDispatch, useSelector } from 'react-redux';
+import { Link, useNavigate } from 'react-router-dom';
 import Button from '../components/button/Button';
 import './Login.scss';
 import { signup } from '../redux/user/user';
 
-
 function Signup() {
-
-  const navigate=useNavigate()
-  const state=useSelector(state=>state.user)
+  const navigate = useNavigate();
+  const state = useSelector((state) => state.user);
   const name = useRef();
   const email = useRef();
   const password = useRef();
@@ -20,15 +19,14 @@ function Signup() {
   const [isActive, setActive] = useState(true);
   const dispatch = useDispatch();
 
-  useEffect(()=>{
-     if (state.user.signed_up==true){
-      navigate("/login")
-     }
-  },[state.user.signed_up])
+  useEffect(() => {
+    if (state.user.signed_up === true) {
+      navigate('/login');
+    }
+  }, [state.user.signed_up]);
 
   const sendForm = () => {
-
-    dispatch(signup({ 
+    dispatch(signup({
       name: name.current.value,
       username: email.current.value,
       email: email.current.value,
@@ -40,11 +38,11 @@ function Signup() {
   return (
     <div className="container page-login">
       <form action="#" className="login-form" method="POST" id="signup-form" ref={loginForm}>
-        
+
         <h2>SIGNUP</h2>
         <div className="add-padding-below">
-        {state.user.errors && state.user.errors.map(error => (
-          <p className='error-message active' key={error}>{error}</p>
+          {state.user.errors && state.user.errors.map((error) => (
+            <p className="error-message active" key={error}>{error}</p>
           ))}
           <input
             ref={name}

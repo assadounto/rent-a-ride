@@ -4,9 +4,9 @@ import {
   Routes,
   Route,
 } from 'react-router-dom';
-import { useEffect} from 'react';
-import { useDispatch, useSelector } from 'react-redux';
-import { auto_login } from './redux/user/user';
+import { useEffect, React } from 'react';
+import { useDispatch } from 'react-redux';
+import { autoLogin } from './redux/user/user';
 import Navbar from './components/navbar/Navbar';
 import AboutScreen from './routes/About';
 import AdminScreen from './routes/admin/Admin';
@@ -21,11 +21,12 @@ import SignupScreen from './routes/Signup';
 import ProtectedRoutes from './routes/ProtectedRoutes';
 
 function App() {
-  const dispatch= useDispatch();
+  const dispatch = useDispatch();
   useEffect(() => {
-    if (localStorage.getItem('token')){
-    dispatch(auto_login());}
-}, []);
+    if (localStorage.getItem('token')) {
+      dispatch(autoLogin());
+    }
+  }, []);
 
   return (
     <Router>
@@ -35,7 +36,7 @@ function App() {
         <Route element={<SignupScreen />} path="/signup" />
         <Route element={<HomeScreen />} path="/models" />
         <Route element={<AboutScreen />} path="/about" />
-          <Route element={<HomeScreen />} index />
+        <Route element={<HomeScreen />} index />
         <Route element={<ProtectedRoutes />}>
           <Route element={<AdminScreen />} path="/admin" />
           <Route element={<NewScreen />} path="/admin/new" />

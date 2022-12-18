@@ -37,8 +37,8 @@ export const bookingsSlice = createSlice({
   reducers: {},
   extraReducers: {
     [fetchBookings.fulfilled]: (state, action) => {
-      state.loading = true;
-      state.bookings = action.payload;
+      const thestate = state;
+      thestate.bookings = action.payload;
     },
   },
 });

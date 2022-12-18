@@ -1,23 +1,24 @@
+/* eslint-disable react/jsx-no-comment-textnodes */
+/* eslint-disable react/button-has-type */
+/* eslint-disable no-unused-vars */
 /* eslint linebreak-style: ["error", "windows"] */
 import { Link, useNavigate } from 'react-router-dom';
 import React, { useState, useEffect } from 'react';
-import { useSelector } from 'react-redux';
+import { useSelector, useDispatch } from 'react-redux';
 import UploadImages from '../../components/uploadimages/UploadImages';
 import Button from '../../components/button/Button';
-import { fetchVehicles } from '../../redux/vehicles/vehicles';
-import { useDispatch } from 'react-redux';
-import { removeVehicle } from '../../redux/vehicles/vehicles';
+import { fetchVehicles, removeVehicle } from '../../redux/vehicles/vehicles';
 
 const AdminScreen = () => {
-  const user= useSelector(state=>state.user)
+  const user = useSelector((state) => state.user);
   const navigate = useNavigate();
   const [uploadVisible, setUploadVisible] = useState(false);
   const [vehicleSelected, setvehicleSelected] = useState({ id: 0, model: 'undefined' });
   const [isIntruder, setIsIntruder] = useState(true);
   const dispatch = useDispatch();
 
-
   useEffect(() => {
+    // eslint-disable-next-line eqeqeq
     if (user.user.role == 'admin') {
       setIsIntruder(false);
       dispatch(fetchVehicles());
@@ -34,11 +35,10 @@ const AdminScreen = () => {
   };
 
   const handledelete = (id) => {
-    console.log(id);
-    dispatch(removeVehicle(id)).then((res) => {
+    // eslint-disable-next-line no-unused-vars
+    dispatch(removeVehicle(id)).then((_res) => {
       dispatch(fetchVehicles());
     });
-
   };
 
   const addVehicle = () => navigate('/admin/new', { replace: true }, [navigate]);
@@ -73,8 +73,7 @@ const AdminScreen = () => {
                   value={car}
                   size="small"
                 />
-
-                <button className='delete' onClick={(e)=>{handledelete(car.id)}} >
+                <button className="delete" onClick={(_e) => { handledelete(car.id); }}>
                   Delete
                 </button>
               </div>

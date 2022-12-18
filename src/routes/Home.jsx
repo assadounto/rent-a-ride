@@ -1,3 +1,4 @@
+/* eslint-disable no-unused-vars */
 /* eslint-disable react/jsx-props-no-spreading */
 /* eslint linebreak-style: ["error", "windows"] */
 import { React, useEffect } from 'react';
@@ -7,7 +8,7 @@ import 'slick-carousel/slick/slick.css';
 import 'slick-carousel/slick/slick-theme.css';
 import './Home.scss';
 import CarCard from '../components/carCard/CarCard';
-import { fetchVehicles} from '../redux/vehicles/vehicles';
+import { fetchVehicles } from '../redux/vehicles/vehicles';
 
 function Home() {
   const dispatch = useDispatch();
@@ -15,13 +16,13 @@ function Home() {
   const user = useSelector((state) => state.user);
 
   useEffect(() => {
-      dispatch(fetchVehicles());
+    dispatch(fetchVehicles());
   }, []);
 
   const settings = {
     className: 'center',
     infinite: true,
-    arrows:true,
+    arrows: true,
     dots: true,
     speed: 500,
     slidesToShow: 3,
@@ -49,7 +50,7 @@ function Home() {
         </header>
         <div className="cars-container">
           <ul className="car-slider">
-          <Slider {...settings}>
+            <Slider {...settings}>
               {
                 vehicles.cars.map((car, index) => (
                   <CarCard

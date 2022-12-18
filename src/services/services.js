@@ -1,4 +1,3 @@
-import user from '../redux/user/user';
 import http from './http';
 
 const getAllCars = () => http.get('/api/v1/cars');
@@ -9,7 +8,7 @@ const removeCar = (id) => http.delete(`/api/v1/cars/${id}`);
 
 const login = (data) => http.post('/api/v1/login', data);
 const signup = (data) => http.post('/api/v1/signup', data);
-const auto_login = () => http.get('/api/v1/auto_login');
+const autoLogin = () => http.get('/api/v1/auto_login');
 
 const createBooking = (data) => http.post('/api/v1/bookings', data);
 const getBookings = () => http.get('/api/v1/bookings');
@@ -26,7 +25,7 @@ const carService = {
 const userService = {
   login,
   signup,
-  auto_login,
+  autoLogin,
 };
 
 const bookingService = {

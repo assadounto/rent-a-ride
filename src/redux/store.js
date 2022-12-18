@@ -1,3 +1,4 @@
+/* eslint-disable import/no-named-as-default */
 /* eslint linebreak-style: ["error", "windows"] */
 import { configureStore } from '@reduxjs/toolkit';
 import vehiclesSlice from './vehicles/vehicles';

@@ -12,6 +12,7 @@ export const login = createAsyncThunk(
   'user/login',
   async (data) => {
     const response = await userService.login(data);
+    localStorage.setItem('token', response.data.jwt);
     return response.data;
   },
 );
@@ -25,10 +26,10 @@ export const signup = createAsyncThunk(
   },
 );
 
-export const auto_login = createAsyncThunk(
+export const autoLogin = createAsyncThunk(
   'user/auto_login',
   async () => {
-    const response = await userService.auto_login();
+    const response = await userService.autoLogin();
     return response.data;
   },
 );
@@ -37,35 +38,30 @@ export const userSlice = createSlice({
   name: 'user',
   initialState,
   extraReducers: {
-    [login.pending]: (state) => {
-      state.loading = true;
-    },
     [login.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.user = action.payload;
+      const thestate = state;
+      thestate.loading = false;
+      thestate.user = action.payload;
       localStorage.setItem('token', action.payload.jwt);
-      state.user = action.payload.current_user;
+      thestate.user = action.payload.current_user;
       window.location.href = '/';
-      state.islogin = true;
+      thestate.islogin = true;
     },
-    [login.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = 'Wrong Email or Password';
+    [login.rejected]: (state) => {
+      const thestate = state;
+      thestate.error = 'Wrong Email or Password';
     },
-    [auto_login.fulfilled]: (state, action) => {
-      state.user = action.payload;
-      state.islogin = true;
-    },
-    [signup.pending]: (state) => {
-      state.loading = true;
+    [autoLogin.fulfilled]: (state, action) => {
+      const thestate = state;
+      thestate.user = action.payload;
     },
     [signup.fulfilled]: (state, action) => {
-      state.loading = false;
-      state.user = action.payload;
+      const thestate = state;
+      thestate.user = action.payload;
     },
     [signup.rejected]: (state, action) => {
-      state.loading = false;
-      state.error = action.payload.error;
+      const thestate = state;
+      thestate.error = action.payload.error;
     },
   },
 });

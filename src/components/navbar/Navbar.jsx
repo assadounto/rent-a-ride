@@ -17,11 +17,10 @@ import './Navbar.scss';
 import Button from '../button/Button';
 
 const Navbar = () => {
-  const state = useSelector(state=>state.user)
- 
+  const state = useSelector((state) => state.user);
+
   const [navVisible, setNavVisible] = useState(true);
   const [isLoggedIn, setIsLoggedIn] = useState(false);
-  const [isAdmin, setIsAdmin] = useState(false);
 
   useEffect(() => {
     if (window.innerWidth < 400) {
@@ -78,7 +77,7 @@ const Navbar = () => {
                   ABOUT
                 </NavLink>
               </li>
-              {state.user.role=="admin"&& (
+              {state.user.role === 'admin' && (
               <li>
                 <NavLink to="/admin" onClick={() => setNavVisible(false)}>
                   ADMIN

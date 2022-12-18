@@ -1,4 +1,7 @@
+/* eslint-disable max-len */
 /* eslint linebreak-style: ["error", "windows"] */
+import React from 'react';
+
 const AboutScreen = () => {
   const location = [
     {
@@ -32,7 +35,7 @@ const AboutScreen = () => {
       <div className="info-container">
         <p>
           THIS APP IS CREATED BY RICHMOND ADU-KYERE, MUHAMMAD RAAD, Gasangwa Thomas,Favour Amarachi ,Afolabi Akorede,
-          MUHAMMAD IBRAHIM 
+          MUHAMMAD IBRAHIM
         </p>
 
         <h2>Locations</h2>

@@ -1,16 +1,14 @@
+/* eslint-disable no-unused-vars */
 /* eslint linebreak-style: ["error", "windows"] */
+import { useDispatch, useSelector } from 'react-redux';
+import { useRef, useState, React } from 'react';
 import { Link } from 'react-router-dom';
-import {  useRef, useState } from 'react';
 import Button from '../components/button/Button';
 import './Login.scss';
-import React from 'react';
 import { login } from '../redux/user/user';
-import { useDispatch ,useSelector} from 'react-redux';
-
 
 function LoginScreen() {
-  const userState = useSelector(state => state.user);
-  const sendForm = useRef();
+  const userState = useSelector((state) => state.user);
   const loginForm = useRef();
   const email = useRef();
   const password = useRef();
@@ -22,30 +20,26 @@ function LoginScreen() {
   const loginHandler = (e) => {
     const emailValue = email.current.value;
     const passwordValue = password.current.value;
-    
-   if (passwordValue===""&& emailValue==="") {
-      setPassError("Email and Password Cannot Be blank")
-    }
-    else if (passwordValue==="") {
-      setPassError("Please Provide Password")
-    }
-    else if (emailValue==="") {
-      setPassError("Please Provide Email")
-    }
-    else {
+
+    if (passwordValue === '' && emailValue === '') {
+      setPassError('Email and Password Cannot Be blank');
+    } else if (passwordValue === '') {
+      setPassError('Please Provide Password');
+    } else if (emailValue === '') {
+      setPassError('Please Provide Email');
+    } else {
       setEmailError('');
-      setPassError('')
-      dispatch(login({email: emailValue, password: passwordValue}));
+      setPassError('');
+      dispatch(login({ email: emailValue, password: passwordValue }));
     }
-    
   };
   return (
 
     <div className="container page-login">
-    
+
       <form action="#" className="login-form" method="POST" ref={loginForm}>
-      <div>{userState.user.signed_up == true && "Signed up successful. Please Login"}</div>
-      <div>{userState.error|| emailError || passError}</div>
+        <div>{userState.user.signed_up === true && 'Signed up successful. Please Login'}</div>
+        <div>{userState.error || emailError || passError}</div>
         <h2>LOGIN</h2>
 
         <div className="add-padding-below">
