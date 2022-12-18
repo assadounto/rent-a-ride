@@ -1,5 +1,32 @@
 @import "../config.scss";
 
+
+.load{
+  animation-name: fade-bg;
+  animation-duration: 1s;
+  animation-direction: alternate;
+  animation-iteration-count: infinite;
+  margin: auto;
+  position: relative;
+  top: 200px;
+}
+
+
+@keyframes fade-bg {
+    0% {
+        opacity: 0.5;
+        transition: $transition;
+        transform: rotate(30deg);  
+    }
+
+
+    100% {
+        opacity: 1;
+        transition: $transition; 
+        transform: rotate(-30deg);
+    }
+}
+
 .home-container {
   height: 100%;
   display: flex;
@@ -19,6 +46,12 @@
     p {
       color: gray;
     }
+  }
+
+  .txa {
+    width: 30%;
+    margin: auto;
+    background-color: aqua;
   }
 
   .car-slider {

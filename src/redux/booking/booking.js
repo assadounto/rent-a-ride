@@ -38,7 +38,21 @@ export const bookingsSlice = createSlice({
   extraReducers: {
     [fetchBookings.fulfilled]: (state, action) => {
       const thestate = state;
+      thestate.loading = false;
       thestate.bookings = action.payload;
+    },
+    [fetchBookings.pending]: (state, action) => {
+      const thestate = state;
+      thestate.loading = true;
+      thestate.bookings = action.payload;
+    },
+    [createBooking.pending]: (state) => {
+      const thestate = state;
+      thestate.loading = true;
+    },
+    [createBooking.fulfilled]: (state) => {
+      const thestate = state;
+      thestate.loading = false;
     },
   },
 });

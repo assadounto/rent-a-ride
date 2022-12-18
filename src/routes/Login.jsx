@@ -3,6 +3,7 @@
 import { useDispatch, useSelector } from 'react-redux';
 import { useRef, useState, React } from 'react';
 import { Link } from 'react-router-dom';
+import { SpinnerCircular } from 'spinners-react';
 import Button from '../components/button/Button';
 import './Login.scss';
 import { login } from '../redux/user/user';
@@ -74,12 +75,15 @@ function LoginScreen() {
         </p>
 
         <div className="form-bottom-bar">
-          <Button
-            btnAxn={loginHandler}
-            label="Login"
-            size="main"
-            color="dark"
-          />
+          {userState.loading ? <SpinnerCircular />
+            : (
+              <Button
+                btnAxn={loginHandler}
+                label="Login"
+                size="main"
+                color="dark"
+              />
+            )}
         </div>
       </form>
 

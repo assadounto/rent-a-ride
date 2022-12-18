@@ -23,7 +23,8 @@
         "react-toastify": "^9.0.8",
         "redux": "^4.2.0",
         "sass": "^1.55.0",
-        "slick-carousel": "^1.8.1"
+        "slick-carousel": "^1.8.1",
+        "spinners-react": "^1.0.7"
     },
     "scripts": {
         "start": "react-scripts start",

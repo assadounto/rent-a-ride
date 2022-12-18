@@ -3,6 +3,7 @@
 import React, { useRef, useState, useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { Link, useNavigate } from 'react-router-dom';
+import { SpinnerCircular } from 'spinners-react';
 import Button from '../components/button/Button';
 import './Login.scss';
 import { signup } from '../redux/user/user';
@@ -99,12 +100,15 @@ function Signup() {
         </p>
 
         <div className="form-bottom-bar">
-          <Button
-            btnAxn={sendForm}
-            label="Signup"
-            size="main"
-            color="dark"
-          />
+          {state.loading ? <SpinnerCircular />
+            : (
+              <Button
+                btnAxn={sendForm}
+                label="Signup"
+                size="main"
+                color="dark"
+              />
+            )}
         </div>
       </form>
 

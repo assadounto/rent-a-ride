@@ -47,8 +47,15 @@ export const userSlice = createSlice({
       window.location.href = '/';
       thestate.islogin = true;
     },
+    [login.pending]: (state) => {
+      const thestate = state;
+      thestate.loading = true;
+      thestate.error = '';
+    },
     [login.rejected]: (state) => {
       const thestate = state;
+      thestate.user.signed_up = false;
+      thestate.loading = false;
       thestate.error = 'Wrong Email or Password';
     },
     [autoLogin.fulfilled]: (state, action) => {
@@ -58,9 +65,16 @@ export const userSlice = createSlice({
     [signup.fulfilled]: (state, action) => {
       const thestate = state;
       thestate.user = action.payload;
+      thestate.loading = false;
+      thestate.error = '';
+    },
+    [signup.pending]: (state) => {
+      const thestate = state;
+      thestate.loading = true;
     },
     [signup.rejected]: (state, action) => {
       const thestate = state;
+      thestate.loading = false;
       thestate.error = action.payload.error;
     },
   },

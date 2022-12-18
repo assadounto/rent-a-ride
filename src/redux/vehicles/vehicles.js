@@ -72,6 +72,7 @@ export const vehiclesSlice = createSlice({
     },
     [fetchVehicle.fulfilled]: (state, action) => {
       const thestate = state;
+      thestate.loading = false;
       thestate.car = action.payload;
     },
     [fetchVehicle.rejected]: (state, action) => {

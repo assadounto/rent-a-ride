@@ -7,6 +7,7 @@ import { Link } from 'react-router-dom';
 import { useSelector, useDispatch } from 'react-redux';
 
 import { fetchBookings, removeBooking } from '../redux/booking/booking';
+import Spinner from '../components/spinner';
 
 const ReservationScreen = () => {
   const dispatch = useDispatch();
@@ -21,31 +22,35 @@ const ReservationScreen = () => {
   };
   const deleteHandler = (e) => {
     const del_id = e.target.id;
-
     dispatch(removeBooking(del_id)).then(() => {
       dispatch(fetchBookings());
     });
   };
 
   return (
-    <div className="container page-reservation">
-      {reservations.bookings.length === 0 ? <h2>No Reservations</h2>
-        : (
-          <div className="info-container">
-            {
+    reservations.loading ? <Spinner />
+      : (
+        <div className="container page-reservation">
+
+          {reservations.bookings.length === 0 ? <h2>No Reservations</h2>
+            : (
+              <div className="info-container">
+                <h2 className="txa">My Reservations</h2>
+                {
           reservations.bookings.map((item) => (
-            <article key={item.id}>
+            <article key={item.id} className="article">
               <div className="main-info">
-                <div
+                <img
+                  alt={item.car.name}
+                  src={item.car.image}
                   className="photo"
-                  style={{ backgroundImage: `url(/assets/vehicles/${bgimage.vehicle_photo})` }}
                 />
                 <span>
                   <p>{item.city}</p>
                   <h2>
-                    <Link to={`/detail/${item.car.id}`}>
-                      {item.car.name}
-                    </Link>
+
+                    {item.car.name}
+
                   </h2>
                 </span>
               </div>
@@ -65,7 +70,7 @@ const ReservationScreen = () => {
                     onClick={(e) => deleteHandler(e)}
                     id={item.id}
                   >
-                    delete
+                    Cancel
 
                   </button>
 
@@ -74,9 +79,10 @@ const ReservationScreen = () => {
             </article>
           ))
         }
-          </div>
-        )}
-    </div>
+              </div>
+            )}
+        </div>
+      )
   );
 };
 

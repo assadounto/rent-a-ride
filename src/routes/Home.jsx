@@ -9,6 +9,7 @@ import 'slick-carousel/slick/slick-theme.css';
 import './Home.scss';
 import CarCard from '../components/carCard/CarCard';
 import { fetchVehicles } from '../redux/vehicles/vehicles';
+import Spinner from '../components/spinner';
 
 function Home() {
   const dispatch = useDispatch();
@@ -40,7 +41,7 @@ function Home() {
     ],
   };
   return (
-    vehicles.loading ? <h1>loading</h1>
+    vehicles.loading ? <Spinner />
       : (
         <div className="container">
           <div className="home-container">
